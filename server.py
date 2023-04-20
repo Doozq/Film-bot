@@ -39,14 +39,17 @@ async def code_to_film(update, context):
 
     if await check_sub_chanels(user_id):
         if context.user_data['subscribed']:
-            film = db_sess.query(Film).filter(Film.code == int(update.message.text)).first()
-            if film:
-                if film.img:
-                    await bot.send_photo(chat_id=update.message.chat.id, photo=film.img)
-                await update.message.reply_text(f"Код: {film.code}\n\n"
-                                                f"Название: {film.name}\n\n"
-                                                f"Смотреть: {film.url}")
-            else:
+            try:
+                film = db_sess.query(Film).filter(Film.code == int(update.message.text)).first()
+                if film:
+                    if film.img:
+                        await bot.send_photo(chat_id=update.message.chat.id, photo=film.img)
+                    await update.message.reply_text(f"Код: {film.code}\n\n"
+                                                    f"Название: {film.name}\n\n"
+                                                    f"Смотреть: {film.url}")
+                else:
+                    await update.message.reply_text("Фильм с таким кодом не найден")
+            except ValueError:
                 await update.message.reply_text("Фильм с таким кодом не найден")
         else:
             await ask_for_sub(update.message.chat.id)
