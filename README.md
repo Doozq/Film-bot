@@ -21,7 +21,7 @@
  
                                                                                           С наилучшими пожеланиями, Разработчики.
 
-# Movie bot:RUS version.
+# Film-bot:RUS version.
 This bot was created in order to monetize content on social networks by advertising telegram channels.
 The bot has a wide admin functionality that allows the owner to configure the bot without the participation of a programmer.
 
