@@ -10,6 +10,7 @@ from data.chanels import Chanel
 from admin import admin_login_handler, admin_menu, admin_logout, admin_add_film_handler, admin_add_advert_handler
 from admin import admin_delete_advert_handler
 from config import BOT_TOKEN
+import os
 
 # Запускаем логгирование
 logging.basicConfig(
@@ -126,6 +127,7 @@ def main():
 # Запускаем функцию main() в случае запуска скрипта.
 if __name__ == '__main__':
     bot = telegram.Bot(token=BOT_TOKEN)
+    os.mkdir('db')
     db_session.global_init("db/database.db")
     db_sess = db_session.create_session()
     main()
